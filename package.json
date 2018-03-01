@@ -1,0 +1,20 @@
+{
+  "name": "yuren",
+  "version": "1.0.0",
+  "description": "yurencloud command tool | 愚人云端命令行工具",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "yuren"
+  ],
+  "bin": {
+    "yuren": "./bin/yuren.js"
+  },
+  "author": "mack wang",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.14.1"
+  }
+}
