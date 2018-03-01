@@ -10,5 +10,4 @@ Usage: yu [options] [command]
   Commands:
 
     new|n [options] <name>  build new vue|react project.
-    .gitignore|g            create .gitignore
-    package|p               create package.json
+    create|c <name>         create some template file

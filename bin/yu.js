@@ -22,68 +22,73 @@ program
     .action((name, options) => {
         console.log('building...'.green);
         loading.start();
-
-        if (options.type === 'vue') {
-            childProcess.exec(
-                'git clone https://github.com/yurencloud/yu.vue.git && ' +
-                'rm -rf yu.vue/.git &&' +
-                'mv yu.vue ' + name,
-                '',
-                () => {
-                    loading.end();
-                    console.log(colors.green('%s %s project ' + 'built successfully！'), name, options.type);
-                }
-            );
-        }
-
-        if (options.type === 'react') {
-            childProcess.exec(
-                'git clone https://github.com/yurencloud/yu.react.git && ' +
-                'rm -rf yu.react/.git &&' +
-                'mv yu.react ' + name,
-                '',
-                () => {
-                    loading.end();
-                    console.log(colors.green('%s %s project ' + 'built successfully！'), name, options.type);
-                }
-            );
+        switch (options.type){
+            case 'vue':
+                childProcess.exec(
+                    'git clone https://github.com/yurencloud/yu.vue.git && ' +
+                    'rm -rf yu.vue/.git &&' +
+                    'mv yu.vue ' + name,
+                    '',
+                    () => {
+                        loading.end();
+                        console.log(colors.green('%s %s project ' + 'built successfully！'), name, options.type);
+                    }
+                );
+                break;
+            case 'react':
+                childProcess.exec(
+                    'git clone https://github.com/yurencloud/yu.react.git && ' +
+                    'rm -rf yu.react/.git &&' +
+                    'mv yu.react ' + name,
+                    '',
+                    () => {
+                        loading.end();
+                        console.log(colors.green('%s %s project ' + 'built successfully！'), name, options.type);
+                    }
+                );
+                break;
+            default:
+                break;
         }
     });
 
-// 创建通用.gitignore文件
+// 创建通用的模板文件
 program
-    .command('.gitignore')
-    .alias('g')
-    .description('create .gitignore')
-    .action(() => {
+    .command('create <name>')
+    .alias('c')
+    .description('create some template file')
+    .action((name) => {
         console.log('creating...'.green);
         loading.start();
-        childProcess.exec(
-            `cp ${root}/res/.gitignore .gitignore`,
-            '',
-            () => {
+        switch (name){
+            case 'g':
+            case '.gitignore':
+                childProcess.exec(
+                    `cp ${root}/res/.gitignore .gitignore`,
+                    '',
+                    () => {
+                        loading.end();
+                        console.log('.gitignore created successfully!'.green);
+                    }
+                );
+                break;
+            case 'p':
+            case 'package.json':
+                childProcess.exec(
+                    `cp ${root}/res/package.json package.json`,
+                    '',
+                    () => {
+                        loading.end();
+                        console.log('package.json created successfully!'.green);
+                    }
+                );
+                break;
+            default:
                 loading.end();
-                console.log('.gitignore created successfully!'.green);
-            }
-        );
-    });
+                console.log('This type file is not supported!'.red);
+                break;
+        }
 
-// 创建通用package.json文件
-program
-    .command('package')
-    .alias('p')
-    .description('create package.json')
-    .action(() => {
-        console.log('creating...'.green);
-        loading.start();
-        childProcess.exec(
-            `cp ${root}/res/package.json package.json`,
-            '',
-            () => {
-                loading.end();
-                console.log('package.json created successfully!'.green);
-            }
-        );
     });
 
 // 执行命令

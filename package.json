@@ -1,10 +1,10 @@
 {
   "name": "yu.yu",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "yurencloud command tool | 愚人云端命令行工具",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node bin/yu -h"
   },
   "keywords": [
     "yuren"
