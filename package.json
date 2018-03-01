@@ -1,6 +1,6 @@
 {
-  "name": "yuren",
-  "version": "1.0.0",
+  "name": "yu.yu",
+  "version": "1.0.1",
   "description": "yurencloud command tool | 愚人云端命令行工具",
   "main": "index.js",
   "scripts": {
@@ -10,11 +10,16 @@
     "yuren"
   ],
   "bin": {
-    "yuren": "./bin/yuren.js"
+    "yu": "./bin/yu.js"
   },
   "author": "mack wang",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yurencloud/yu.yu.git"
+  },
   "dependencies": {
+    "colors": "^1.1.2",
     "commander": "^2.14.1"
   }
 }
