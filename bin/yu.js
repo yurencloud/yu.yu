@@ -9,8 +9,6 @@ const path = require('path');
 const root = path.join(__dirname, '..');
 const res = path.join(root, '/res/');
 
-console.log(res,root);
-
 // 命令版本
 program
     .version(pkg.version, '-v, --version');
