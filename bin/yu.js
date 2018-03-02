@@ -5,8 +5,11 @@ const childProcess = require('child_process');
 const colors = require('colors');
 const loading = require('./loading');
 const pkg = require('../package.json');
-const fs = require('fs');
-const root = __dirname + '/..';
+const path = require('path');
+const root = path.join(__dirname, '..');
+const res = path.join(root, '/res/');
+
+console.log(res,root);
 
 // 命令版本
 program
@@ -64,7 +67,7 @@ program
             case 'g':
             case '.gitignore':
                 childProcess.exec(
-                    `cp ${root}/res/.gitignore .gitignore`,
+                    `cp ${res}.gitignore .gitignore`,
                     '',
                     () => {
                         loading.end();
@@ -75,7 +78,7 @@ program
             case 'p':
             case 'package.json':
                 childProcess.exec(
-                    `cp ${root}/res/package.json package.json`,
+                    `cp ${res}package.json package.json`,
                     '',
                     () => {
                         loading.end();
