@@ -1,4 +1,4 @@
-Usage: yu [options] [command]
+  Usage: yu [options] [command]
 
 
   Options:
@@ -11,3 +11,4 @@ Usage: yu [options] [command]
 
     new|n [options] <name>  build new vue|react project.
     create|c <name>         create some template file
+    exec|e <name>           exec command

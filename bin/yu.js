@@ -89,8 +89,32 @@ program
                 console.log('This type file is not supported!'.red);
                 break;
         }
-
     });
+
+// 执行常用命令
+program
+    .command('exec <name>')
+    .alias('e')
+    .description('exec command')
+    .action((name) => {
+        console.log('exec...'.green);
+        switch (name){
+            case 'p':
+            case 'push':
+                childProcess.exec(
+                    `git add . && git commit -am "update" && git push`,
+                    '',
+                    () => {
+                        console.log('git push successfully!'.green);
+                    }
+                );
+                break;
+            default:
+                console.log('This command is not supported!'.red);
+                break;
+        }
+    });
+
 
 // 执行命令
 program.parse(process.argv);
