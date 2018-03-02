@@ -7,7 +7,7 @@ const loading = require('./loading');
 const pkg = require('../package.json');
 const path = require('path');
 const root = path.join(__dirname, '..');
-const res = path.join(root, '/res/');
+const res = path.join(root, '/res');
 
 // 命令版本
 program
@@ -65,7 +65,7 @@ program
             case 'g':
             case '.gitignore':
                 childProcess.exec(
-                    `cp ${res}.gitignore .gitignore`,
+                    `cp ${res}/gitignore .gitignore`,
                     '',
                     () => {
                         loading.end();
@@ -76,7 +76,7 @@ program
             case 'p':
             case 'package.json':
                 childProcess.exec(
-                    `cp ${res}package.json package.json`,
+                    `cp ${res}/package.json package.json`,
                     '',
                     () => {
                         loading.end();
