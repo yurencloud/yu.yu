@@ -18,8 +18,8 @@ program
 program
     .command('new <name>')
     .alias('n')
-    .description('build new vue|react project.')
-    .option('-t, --type [value]', /^(vue|react)$/i, 'vue')
+    .description('build new vue|react|webpack project.')
+    .option('-t, --type [value]', /^(vue|react|webpack)$/i, 'vue')
     .action((name, options) => {
         console.log('building...'.green);
         loading.start();
@@ -41,6 +41,18 @@ program
                     'git clone https://github.com/yurencloud/yu.react.git && ' +
                     'rm -rf yu.react/.git &&' +
                     'mv yu.react ' + name,
+                    '',
+                    () => {
+                        loading.end();
+                        console.log(colors.green('%s %s project ' + 'built successfully！'), name, options.type);
+                    }
+                );
+                break;
+            case 'webpack':
+                childProcess.exec(
+                    'git clone https://github.com/yurencloud/yu.webpack.git && ' +
+                    'rm -rf yu.webpack/.git &&' +
+                    'mv yu.webpack ' + name,
                     '',
                     () => {
                         loading.end();

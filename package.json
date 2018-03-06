@@ -1,6 +1,6 @@
 {
   "name": "yu.yu",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "yurencloud command tool | 愚人云端命令行工具",
   "main": "index.js",
   "scripts": {
