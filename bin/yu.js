@@ -27,7 +27,7 @@ program
             case 'vue':
                 childProcess.exec(
                     'git clone https://github.com/yurencloud/yu.vue.git && ' +
-                    'rm -rf yu.vue/.git &&' +
+                    'rm -rf yu.vue/.git && ' +
                     'mv yu.vue ' + name,
                     '',
                     () => {
@@ -39,7 +39,7 @@ program
             case 'react':
                 childProcess.exec(
                     'git clone https://github.com/yurencloud/yu.react.git && ' +
-                    'rm -rf yu.react/.git &&' +
+                    'rm -rf yu.react/.git && ' +
                     'mv yu.react ' + name,
                     '',
                     () => {
@@ -51,7 +51,7 @@ program
             case 'webpack':
                 childProcess.exec(
                     'git clone https://github.com/yurencloud/yu.webpack.git && ' +
-                    'rm -rf yu.webpack/.git &&' +
+                    'rm -rf yu.webpack/.git && ' +
                     'mv yu.webpack ' + name,
                     '',
                     () => {
