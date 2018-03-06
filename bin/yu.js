@@ -84,6 +84,27 @@ program
                     }
                 );
                 break;
+            case 'n':
+            case '.npmignore':
+                childProcess.exec(
+                    `cp ${res}/npmignore .npmignore`,
+                    '',
+                    () => {
+                        loading.end();
+                        console.log('.npmignore created successfully!'.green);
+                    }
+                );
+                break;
+            case 'project':
+                childProcess.exec(
+                    `mkdir node_modules && cp ${res}/npmignore .npmignore && cp ${res}/gitignore .gitignore && cp ${res}/package.json package.json`,
+                    '',
+                    () => {
+                        loading.end();
+                        console.log('empty project created successfully!'.green);
+                    }
+                );
+                break;
             default:
                 loading.end();
                 console.log('This type file is not supported!'.red);

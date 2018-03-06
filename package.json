@@ -1,11 +1,11 @@
 {
   "name": "yu.yu",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "yurencloud command tool | 愚人云端命令行工具",
   "main": "index.js",
   "scripts": {
     "test": "node bin/yu -h",
-    "publishing": "npm publish &&　git add . && git commit -am 'update' && git push"
+    "publishing": "npm publish &&　git add . && git commit -am update && git push"
   },
   "keywords": [
     "yuren"
