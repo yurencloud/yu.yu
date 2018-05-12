@@ -3,6 +3,7 @@
 const program = require('commander');
 const childProcess = require('child_process');
 const colors = require('colors');
+const translate = require('google-translate-api-cn');
 const loading = require('./loading');
 const pkg = require('../package.json');
 const path = require('path');
@@ -23,7 +24,7 @@ program
     .action((name, options) => {
         console.log('building...'.green);
         loading.start();
-        switch (options.type){
+        switch (options.type) {
             case 'vue':
                 childProcess.exec(
                     'git clone https://github.com/yurencloud/yu.vue.git && ' +
@@ -73,7 +74,7 @@ program
     .action((name) => {
         console.log('creating...'.green);
         loading.start();
-        switch (name){
+        switch (name) {
             case 'g':
             case '.gitignore':
                 childProcess.exec(
@@ -131,7 +132,7 @@ program
     .description('exec command')
     .action((name) => {
         console.log('exec...'.green);
-        switch (name){
+        switch (name) {
             case 'p':
             case 'push':
                 childProcess.exec(
@@ -145,6 +146,38 @@ program
             default:
                 console.log('This command is not supported!'.red);
                 break;
+        }
+    });
+
+function trans(text, options) {
+    translate(text, {from: options.from, to: options.to}).then(res => {
+        console.log(res.text);
+    }).catch(err => {
+    });
+}
+
+// 执行常用命令
+program
+    .command('translate <text>')
+    .alias('t')
+    .description('translate text to Chinese by google translate api')
+    .option('-f, --from [value]')// 从什么语言而来的不管
+    .description('')
+    .option('-t, --to [value]', '', 'zh-cn')// 默认翻译目标是中文
+    .description(`translate text to Chinese by google translate api
+    -f, --from [value] from language
+    -t, --to [value] to language default zh-cn
+    `)
+    .action((text, options) => {
+        // 因为谷歌翻译有字数限制，可以循环翻译
+        if (text.length > 4000) {
+            const limit = Math.ceil(text.length / 4000);
+            for (let i = 0; i < limit; i++) {
+                const segment = text.substr(i * 4000, (i + 1) * 4000);
+                trans(segment, options)
+            }
+        } else {
+            trans(text, options)
         }
     });
 
