@@ -12,3 +12,8 @@ program.parse(process.argv);
 
 ## 约定
 二级命令中，都定义一个alias, 为命令的首个字母，若有重复，则前两个字母
+
+## 为了兼容win和linux
+使用
+const path = require('path');
+const res = path.join(root, '/res/');
