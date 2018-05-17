@@ -2,6 +2,7 @@
 
 const program = require('commander');
 const childProcess = require('child_process');
+const validation = require('yu.validation');
 const colors = require('colors');
 const translate = require('google-translate-api-cn');
 const loading = require('./loading');
@@ -169,6 +170,12 @@ program
     -t, --to [value] to language default zh-cn
     `)
     .action((text, options) => {
+        if(options.to === 'zh-cn'){
+            // 判断是否是中文开头的
+            if(validation.isChinese(text[0])){
+                options.to = 'en';
+            }
+        }
         // 因为谷歌翻译有字数限制，可以循环翻译
         if (text.length > 4000) {
             const limit = Math.ceil(text.length / 4000);

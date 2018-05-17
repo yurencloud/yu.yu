@@ -1,6 +1,6 @@
 {
   "name": "yu.yu",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "yurencloud command tool | 愚人云端命令行工具",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "commander": "^2.14.1",
-    "google-translate-api-cn": "^1.0.1"
+    "google-translate-api-cn": "^1.0.1",
+    "yu.validation": "^1.0.1"
   }
 }
