@@ -10,6 +10,7 @@ const pkg = require('../package.json');
 const path = require('path');
 const root = path.join(__dirname, '..');
 const res = path.join(root, '/res');
+const got = require('got');
 
 // 命令版本
 program
@@ -156,6 +157,8 @@ function trans(text, options) {
     }).catch(err => {
     });
 }
+https://searchcode.com/api/jsonp_codesearch_I/?callback=searchcodeRequestVariableCallback&q=user+center&p=0&per_page=42
+
 
 // 执行常用命令
 program
@@ -186,6 +189,60 @@ program
         } else {
             trans(text, options)
         }
+    });
+
+
+
+function youdaoTrans(text, options) {
+    return got('https://fanyi.youdao.com/openapi.do?callback=youdaoFanyiRequestCallback&keyfrom=Codelf&key=2023743559&type=data&doctype=jsonp&version=1.1&q=' + encodeURIComponent(text)).then(res => {
+        var data = JSON.parse(res.body.substring(27, res.body.length - 2))
+        console.log(data.translation[0]);
+        return data.translation[0];
+        // console.log(data.translation[0]);
+    }).catch(err => {
+    });
+}
+
+// 执行常用命令
+program
+    .command('youdao <text>')
+    .alias('y')
+    .description('translate text to Chinese by youdao translate api')
+    .action((text, options) => {
+         youdaoTrans(text)
+    });
+
+function codeJs(text) {
+    const textArr = text.split(' ')
+    console.log('https://searchcode.com/api/jsonp_codesearch_I/?callback=searchcodeRequestVariableCallback&p=0&per_page=42&q=' + textArr.join('+'));
+    got('https://searchcode.com/api/codesearch_I/?callback=searchcodeRequestVariableCallback&p=0&per_page=42&q='+textArr.join('+')).then(res => {
+        var data = JSON.parse(res.body)
+        data.results.forEach(item=>{
+            Object.keys(item.lines).forEach(key=>{
+                textArr.forEach((word)=>{
+                    if(item.lines[key].indexOf(word)>-1){
+                        console.log(item.lines[key])
+                    }
+                })
+
+            })
+        })
+    }).catch(err => {
+        console.log(err);
+    });
+}
+
+// 先翻译，再搜索变量名
+// https://searchcode.com/api/jsonp_codesearch_I/?callback=searchcodeRequestVariableCallback&q=user+center&p=0&per_page=42
+program
+    .command('codejs <text>')
+    .alias('cj')
+    .description('translate text to Chinese by youdao translate api')
+    .action((text, options) => {
+         youdaoTrans(text).then(result=>{
+             codeJs(result)
+         })
+
     });
 
 

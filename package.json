@@ -22,7 +22,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "commander": "^2.14.1",
-    "google-translate-api-cn": "^1.0.1",
+    "google-translate-api-cn": "^1.0.2",
     "yu.validation": "^1.0.1"
   }
 }
