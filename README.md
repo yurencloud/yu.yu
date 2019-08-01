@@ -11,7 +11,7 @@ npm install -g yu.yu
 使用谷歌翻译
 ```
 yu t hello // 你好
-yu t 世界 // word
+yu t 世界 // world
 ```
 使用有道翻译
 ```
