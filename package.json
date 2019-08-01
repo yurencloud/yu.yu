@@ -1,13 +1,18 @@
 {
   "name": "yu.yu",
-  "version": "1.0.11",
-  "description": "yurencloud command tool | 愚人云端命令行工具",
+  "version": "2.0.1",
+  "description": "快速翻译及智能搜索和生成变量名 | A quick translation and intelligent search and generate a variable name | codeif",
   "main": "index.js",
   "scripts": {
     "test": "node bin/yu -h",
     "publishing": "npm publish &&　git add . && git commit -am update && git push"
   },
   "keywords": [
+    "codeif",
+    "google",
+    "youdao",
+    "yu.yu",
+    "translate",
     "yuren"
   ],
   "bin": {

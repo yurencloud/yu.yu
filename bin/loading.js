@@ -1,11 +1,14 @@
+const colors = require('colors');
+
 const loading = (function () {
     let point = 0;
     let interval;
     const loadingList = ['-', '\\', '|', '/'];
 
     return {
+        text: '',
         start() {
-            process.stdout.write(loadingList[0]);
+            process.stdout.write(colors.green(loadingList[0]+ ' ' + this.text));
             interval = setInterval(() => {
                 point++;
                 point %= loadingList.length;
@@ -14,7 +17,7 @@ const loading = (function () {
                 } catch (err) {
                     // ignore
                 }
-                process.stdout.write(loadingList[point]);
+                process.stdout.write(colors.green(loadingList[point] + ' ' + this.text));
             }, 90);
         },
         end() {
